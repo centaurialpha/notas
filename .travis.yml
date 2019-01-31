@@ -1,0 +1,9 @@
+language: python
+
+python:
+  - 3.5
+  - 3.6
+
+before_script: rm --recursive --force --verbose *.py[cod]
+
+script: python -m unittest
