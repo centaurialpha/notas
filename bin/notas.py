@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# This file is part of Notas(http://ninja-ide.org).
+# Copyright 2019 - Gabriel Acosta <acostadariogabriel@gmail.com>
+#
+# This file is part of Notas.
 #
 # Notasis free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
