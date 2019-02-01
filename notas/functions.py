@@ -48,13 +48,26 @@ def _ls(path):
     return files
 
 
-def cat():
-    pass
+def file_exists(file_path):
+    exists = False
+    if os.path.exists(file_path):
+        exists = True
+    return exists
+
+
+def cat(args):
+    filename = os.path.join(NOTES_PATH, args.name)
+    if file_exists(filename):
+        with open(filename) as fp:
+            for line in fp.readlines():
+                yield line
+    else:
+        print("Note '{}' doesn't exists :/".format(filename))
 
 
 def rm(args):
     to_remove = os.path.join(NOTES_PATH, args.name)
-    if os.path.exists(to_remove):
+    if file_exists(to_remove):
         ret = input("Remove '{}'? [y/N]: ".format(to_remove))
         if ret in 'yY':
             os.remove(to_remove)

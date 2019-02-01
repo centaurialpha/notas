@@ -23,10 +23,11 @@ from setuptools import setup, find_packages
 setup(
     name='notas',
     version='0.1',
+    license='GPL-3',
     author='Gabriel Acosta',
     author_email='acostadariogabriel@gmail.com',
-    python_requires='>=3',
-    # long_description=''
+    python_requires='>=3.4',
+    long_description=('Simple application of cli that allows to handle notes'),
     packages=find_packages(exclude=['tests']),
     entry_points={
         'console_scripts': ['notas=bin.notas:main']

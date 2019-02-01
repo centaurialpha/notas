@@ -19,8 +19,8 @@
 # along with Notas; If not, see <http://www.gnu.org/licenses/>.
 """Entry point"""
 
-import sys
 import os
+import sys
 
 project_path = os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
 if project_path not in sys.path:

@@ -61,20 +61,36 @@ class CLITestCase(unittest.TestCase):
 
 class FunctionsTestCase(unittest.TestCase):
 
+    def _create_file(self, name):
+        fpath = os.path.join(self._dir, name)
+        with open(fpath, 'w') as fp:
+            fp.write('Some Content {}'.format(name))
+        return fpath
+
     def setUp(self):
         self._dir = tempfile.mkdtemp()
         functions.NOTES_PATH = self._dir
         for f in ('f1', 'f2', 'f3'):
-            with open(os.path.join(self._dir, f), 'w') as fp:
-                fp.write('some content {}'.format(f))
+            self._create_file(f)
+            # with open(os.path.join(self._dir, f), 'w') as fp:
+            #     fp.write('some content {}'.format(f))
 
     def tearDown(self):
         shutil.rmtree(self._dir)
+
+    def test_file_exists(self):
+        f = tempfile.mkstemp()[1]
+        f2 = tempfile.mktemp()[1]
+        self.assertTrue(functions.file_exists(f))
+        self.assertFalse(functions.file_exists(f2))
 
     def test_get_base_name(self):
         for f in ('f1', 'f2', 'f3'):
             file_path = os.path.join(self._dir, f)
             self.assertEqual(functions.get_basename(file_path), f)
+
+    def test_cat(self):
+        pass
 
 
 if __name__ == '__main__':
