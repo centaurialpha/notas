@@ -20,10 +20,16 @@
 """Entry point"""
 
 import sys
-from notas import cli
+import os
+
+project_path = os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0]))))
+if project_path not in sys.path:
+    sys.path.insert(0, project_path)
 
 
 def main():
+    from notas import cli
+
     parser = cli.cliparse()
     if len(sys.argv) == 1:
         parser.print_help()
