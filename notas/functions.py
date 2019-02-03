@@ -62,7 +62,15 @@ def ls(args):
 
 
 def rm(args):
-    try:
-        utils.remove_note(args.name)
-    except utils.NoteNotFoundError as reason:
-        print(reason)
+    if utils.note_exists(args.name):
+        user_input = input("Remove note '{}'? [y/N]: ".format(args.name))
+        if user_input in 'yY':
+            try:
+                utils.remove_note(args.name)
+            except utils.NoteNotFoundError as reason:
+                print(reason)
+                exit(-1)
+            else:
+                print('Note deleted')
+    else:
+        print('Note not exists :/')
