@@ -3,12 +3,21 @@ Simple tool to create, list and delete notes using the default editor
 
 ![](https://user-images.githubusercontent.com/5894606/52173970-7c7c8f80-276c-11e9-89a9-1bfe5e12d544.gif)
 
-## How to install
-The only requirement is Python 3.4+
+## Requirements
+- Python 3.4+
+
+## Install
+
+```bash
+$ pip install notas
+```
+
+## Install from sources
 
 ```bash
 $ git clone https://github.com/centaurialpha/notas.git
 $ cd notas
 $ python setup.py install
 ```
+
 Enjoy it!
