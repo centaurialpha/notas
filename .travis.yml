@@ -6,7 +6,7 @@ python:
 
 before_script: rm --recursive --force --verbose *.py[cod]
 
-install: pip install coverage
+install: pip install coveralls
 
 script: coverage run --source=tests -m unittest discover -s tests/
 
