@@ -8,6 +8,6 @@ before_script: rm --recursive --force --verbose *.py[cod]
 
 install: pip install coveralls
 
-script: coverage run --source=notas.utils -m unittes
+script: coverage run --source=notas.utils -m unittest
 
 after_succes: coveralls
