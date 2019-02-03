@@ -130,6 +130,11 @@ class UtilsTestCase(unittest.TestCase):
             self.assertEqual(len(notes), 1)
             self.assertEqual(notes, ['note_1222'])
 
+    def test_rm_note_raises(self):
+        with mock.patch('notas.utils.get_note_by_name', return_value='lalala'):
+            with self.assertRaises(utils.NoteNotFoundError):
+                utils.remove_note('lll')
+
 
 if __name__ == '__main__':
     unittest.main()
