@@ -6,6 +6,6 @@ python:
 
 before_script: rm --recursive --force --verbose *.py[cod]
 
-script: python -m unittest
+script: coverage run --source=tests -m unittest discover -s tests/
 
 after_succes: coveralls
