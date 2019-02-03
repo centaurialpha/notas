@@ -7,3 +7,5 @@ python:
 before_script: rm --recursive --force --verbose *.py[cod]
 
 script: python -m unittest
+
+after_succes: coveralls
