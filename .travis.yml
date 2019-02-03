@@ -10,4 +10,4 @@ install: pip install coveralls
 
 script: coverage run --source=notas.utils -m unittest
 
-after_succes: coveralls
+after_success: coveralls
