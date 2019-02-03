@@ -1,7 +1,7 @@
 # notas [![Build Status](https://travis-ci.org/centaurialpha/notas.svg?branch=master)](https://travis-ci.org/centaurialpha/notas) [![Coverage Status](https://coveralls.io/repos/github/centaurialpha/notas/badge.svg?branch=master)](https://coveralls.io/github/centaurialpha/notas?branch=master)
 Simple tool to create, list and delete notes using the default editor
 
-![](https://github.com/centaurialpha/centaurialpha.github.io/blob/master/Peek%202019-01-31%2017-17.gif?raw=true)
+![](https://user-images.githubusercontent.com/5894606/52173970-7c7c8f80-276c-11e9-89a9-1bfe5e12d544.gif)
 
 ## How to install
 The only requirement is Python 3.4+
