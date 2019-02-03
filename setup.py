@@ -19,7 +19,6 @@
 
 from setuptools import setup, find_packages
 
-
 setup(
     name='notas',
     version='0.1',
@@ -29,7 +28,5 @@ setup(
     python_requires='>=3.4',
     long_description=('Simple application of cli that allows to handle notes'),
     packages=find_packages(exclude=['tests']),
-    entry_points={
-        'console_scripts': ['notas=bin.notas:main']
-    }
+    scripts=['bin/notas']
 )

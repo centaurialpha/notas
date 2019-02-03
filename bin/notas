@@ -27,9 +27,10 @@ if project_path not in sys.path:
     sys.path.insert(0, project_path)
 
 
-def main():
-    from notas import cli
+from notas import cli  # noqa
 
+
+def main():
     parser = cli.cliparse()
     if len(sys.argv) == 1:
         parser.print_help()
