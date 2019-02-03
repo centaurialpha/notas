@@ -33,10 +33,10 @@ def cliparse():
     # Listado
     ls_note = subparsers.add_parser('ls', help='List all notes')
     ls_note.set_defaults(slot=functions.ls)
-    # Cat
-    # cat_note = subparsers.add_parser('cat', help='Show content of note')
-    # cat_note.add_argument('name')
-    # cat_note.set_defaults(slot=functions.cat)
+    # Open
+    open_note = subparsers.add_parser('open', help='Open note')
+    open_note.add_argument('name_number')
+    open_note.set_defaults(slot=functions.open_note)
     # Remove
     rm_note = subparsers.add_parser('rm', help='Remove notes')
     rm_note.add_argument('name')

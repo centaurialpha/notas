@@ -20,74 +20,49 @@
 import os
 import time
 import subprocess
-
-# Get default editor
-EDITOR = os.getenv('EDITOR', None)
-if EDITOR is None:
-    EDITOR = subprocess.check_output(['which', 'editor']).decode().split()[0]
-# Here the notes will be stored
-NOTES_PATH = os.path.join(os.path.expanduser('~'), '.notas')
-# Create path if not exists
-if not os.path.exists(NOTES_PATH):
-    os.makedirs(NOTES_PATH)
+from notas import utils
 
 
 def new(args):
-    """Open default editor or custom editor with name"""
-    editor = EDITOR
-    if args.editor:
-        editor = args.editor
-    cmd = [editor, os.path.join(NOTES_PATH, args.name)]
+    """Create new note"""
+    _open_editor_with_note(args.name, args.editor)
+
+
+def _open_editor_with_note(note, editor=None):
+    try:
+        editor_exec = utils.get_editor(custom_editor=editor)
+    except utils.NotEditorFoundError as reason:
+        print(reason)
+        exit(-1)
+    cmd = [editor_exec, utils.get_note_path(note)]
     subprocess.call(cmd)
 
 
-def _ls(path):
-    """Returns a list with files in path order by getmtime"""
-    files = sorted([os.path.join(path, f) for f in os.listdir(path)],
-                   key=os.path.getmtime, reverse=True)
-    return files
-
-
-def file_exists(file_path):
-    exists = False
-    if os.path.exists(file_path):
-        exists = True
-    return exists
-
-
-def cat(args):
-    filename = os.path.join(NOTES_PATH, args.name)
-    if file_exists(filename):
-        with open(filename) as fp:
-            for line in fp.readlines():
-                yield line
-    else:
-        print("Note '{}' doesn't exists :/".format(filename))
-
-
-def rm(args):
-    to_remove = os.path.join(NOTES_PATH, args.name)
-    if file_exists(to_remove):
-        ret = input("Remove '{}'? [y/N]: ".format(to_remove))
-        if ret in 'yY':
-            os.remove(to_remove)
-    else:
-        print("Note '{}' doesn't exists :/".format(to_remove))
-
-
-def get_basename(filename):
-    """Returns the basename of filename"""
-    return os.path.basename(filename)
+def open_note(args):
+    """Open note"""
+    try:
+        note = utils.get_note(args.name_number)
+    except utils.NoteNotFoundError as reason:
+        print(reason)
+        exit(-1)
+    _open_editor_with_note(note)
 
 
 def ls(args):
     """Prints all notes"""
     headers = '{:<5} {:<40} {:<40}'.format('#', 'NAME', 'UPDATED')
     print(headers, end='\n\n')
-    for count, filename in enumerate(_ls(NOTES_PATH)):
-        name = get_basename(filename)
+    for count, filename in enumerate(utils.get_all_notes()):
+        name = utils.get_basename(filename)
         if len(name) > 35:
             name = '...' + name[-35:]
         updated = time.ctime(os.path.getmtime(filename))
         print('{:<5} {:<40} {:<40}'.format(count, name, updated))
     print()
+
+
+def rm(args):
+    try:
+        utils.remove_note(args.name)
+    except utils.NoteNotFoundError as reason:
+        print(reason)
