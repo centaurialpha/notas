@@ -21,7 +21,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='notas',
-    version='0.1',
+    version='0.2',
     license='GPL-3',
     author='Gabriel Acosta',
     author_email='acostadariogabriel@gmail.com',
